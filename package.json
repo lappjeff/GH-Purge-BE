@@ -1,0 +1,28 @@
+{
+	"name": "gh-purge-be",
+	"version": "1.0.0",
+	"description": "Backend for gh purge project",
+	"main": "server.js",
+	"scripts": {
+		"test": "test",
+		"server": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lappjeff/GH-Purge-BE.git"
+	},
+	"author": "Jeffrey M. Lapp",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/lappjeff/GH-Purge-BE/issues"
+	},
+	"homepage": "https://github.com/lappjeff/GH-Purge-BE#readme",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-session": "^1.17.0",
+		"nodemon": "^2.0.2",
+		"passport": "^0.4.1",
+		"passport-github": "^1.1.0"
+	}
+}
