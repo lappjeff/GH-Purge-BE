@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 require("dotenv").config();
 
 const authRouter = require("./routes/auth/authRoutes");
@@ -6,6 +7,7 @@ const authRouter = require("./routes/auth/authRoutes");
 const app = express();
 
 app.use(express.json());
+app.use(passport.initialize());
 
 //Routes
 app.use("/api/auth", authRouter);
