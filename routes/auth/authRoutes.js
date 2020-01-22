@@ -1,7 +1,7 @@
 require("dotenv").config();
 const router = require("express").Router();
 const passport = require("./passportConfig");
-const scopes = ["user", "delete:packages"];
+const scopes = ["user", "delete_repo"];
 
 router.get("/github", passport.authenticate("github", { scope: scopes }));
 
@@ -14,8 +14,6 @@ router.get(
 );
 
 router.get("/github/success", (req, res) => {
-	console.log(req);
-
 	res.status(200).json({ message: "Successfully logged into GH" });
 });
 
