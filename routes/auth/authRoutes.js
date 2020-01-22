@@ -1,7 +1,7 @@
 require("dotenv").config();
 const router = require("express").Router();
 const passport = require("./passportConfig");
-const scopes = ["user"];
+const scopes = ["user", "delete:packages"];
 
 router.get("/github", passport.authenticate("github", { scope: scopes }));
 
