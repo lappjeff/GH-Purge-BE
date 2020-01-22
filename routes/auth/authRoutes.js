@@ -1,5 +1,4 @@
 require("dotenv").config();
-const passport = require("passport");
 const router = require("express").Router();
 const passport = require("./passportConfig");
 const scopes = ["user"];
