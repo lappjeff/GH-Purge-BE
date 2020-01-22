@@ -8,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 app.use("/api/auth", authRouter);
