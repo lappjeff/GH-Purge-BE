@@ -1,34 +1,8 @@
 require("dotenv").config();
 const passport = require("passport");
 const router = require("express").Router();
-const GHStrategy = require("passport-github").Strategy;
-
-const clientID = process.env.AUTH_CLIENT_ID;
-const clientSecret = process.env.AUTH_SECRET;
-const callbackURL = process.env.AUTH_CALLBACK;
-
-passport.serializeUser((user, done) => {
-	done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-	done(null, user);
-});
-
+const passport = require("./passportConfig");
 const scopes = ["user"];
-
-passport.use(
-	new GHStrategy(
-		{
-			clientID,
-			clientSecret,
-			callbackURL
-		},
-		function(accessToken, refreshToken, profile, done) {
-			return done(null, { accessToken, refreshToken, profile });
-		}
-	)
-);
 
 router.get("/github", passport.authenticate("github", { scope: scopes }));
 
