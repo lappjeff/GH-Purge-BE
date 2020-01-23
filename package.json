@@ -18,6 +18,7 @@
 	},
 	"homepage": "https://github.com/lappjeff/GH-Purge-BE#readme",
 	"dependencies": {
+		"connect-mongodb-session": "^2.3.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"express-session": "^1.17.0",
