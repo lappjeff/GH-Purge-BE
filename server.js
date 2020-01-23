@@ -1,11 +1,14 @@
 const express = require("express");
 const passport = require("passport");
-const mongoose = require("mongoose");
+const connectDB = require("./db/connectDb");
 require("dotenv").config();
 
 const authRouter = require("./routes/auth/authRoutes");
 
 const app = express();
+
+// MongoDB connection
+connectDB();
 
 app.use(express.json());
 app.use(passport.initialize());
