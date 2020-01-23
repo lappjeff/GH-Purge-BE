@@ -1,6 +1,5 @@
 require("dotenv").config();
 const router = require("express").Router();
-const qs = require("querystring");
 const passport = require("../../config/passportConfig");
 const scopes = ["user", "delete_repo"];
 
@@ -10,9 +9,7 @@ router.get(
 	"/github/callback",
 	passport.authenticate("github", { failureRedirect: "/404" }),
 	(req, res) => {
-		const dataString = qs.stringify(req.user.profile);
-
-		res.redirect(`success?${dataString}`);
+		res.redirect("success");
 	}
 );
 
