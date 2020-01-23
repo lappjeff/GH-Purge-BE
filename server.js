@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const authRouter = require("./routes/auth/authRoutes");
