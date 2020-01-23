@@ -7,10 +7,11 @@ router.get("/github", passport.authenticate("github", { scope: scopes }));
 
 router.get(
 	"/github/callback",
-	passport.authenticate("github", { failureRedirect: "/404" }),
-	(req, res) => {
-		res.redirect("success");
-	}
+	passport.authenticate("github", {
+		failureRedirect: "/404",
+		successRedirect: "success"
+	}),
+	(req, res) => {}
 );
 
 router.get("/github/success", (req, res) => {
@@ -22,7 +23,7 @@ router.get("/github/success", (req, res) => {
 	});
 });
 
-const checkAuth = (err, req, res, next) => {
+const checkAuthentication = (req, res, next) => {
 	if (req.isUnauthenticated()) {
 		// need to add checking for missing cookie as well
 		// currently the cookie can be wiped and this will pass with no user data
@@ -32,7 +33,7 @@ const checkAuth = (err, req, res, next) => {
 	}
 };
 
-router.get("/github/checkAuth", checkAuth, (req, res) => {
+router.get("/github/checkAuth", checkAuthentication, (req, res) => {
 	res.status(200).json({
 		data: req.user,
 		isLoggedIn: true,
