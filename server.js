@@ -18,6 +18,10 @@ const store = new MongoDBStore({
 	uri: process.env.MONGO_DB_URI,
 	collection: "sessions"
 });
+
+store.on("error", err => {
+	console.log(err);
+});
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
