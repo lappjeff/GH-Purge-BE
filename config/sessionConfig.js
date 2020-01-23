@@ -9,7 +9,7 @@ const store = new MongoDBStore(
 		collection: "sessions"
 	},
 	err => {
-		console.log(err);
+		if (err) console.log(err);
 	}
 );
 
