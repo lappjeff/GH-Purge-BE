@@ -1,5 +1,5 @@
 require("dotenv").config();
-const config = require("./mongoConfig");
+const config = require("../config/mongoConfig");
 const mongoose = require("mongoose");
 
 const connectDb = async () => {
