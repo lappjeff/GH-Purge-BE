@@ -18,7 +18,7 @@ app.use("/api/auth", authRouter);
 const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-	res.send({ message: "Server running successfully!" }).status(200);
+	res.status(200).send({ message: "Server running successfully!" });
 });
 
 app.listen(port, () => console.info(`App listening on port ${port}`));
