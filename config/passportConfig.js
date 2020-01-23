@@ -6,11 +6,19 @@ const clientID = process.env.AUTH_CLIENT_ID;
 const clientSecret = process.env.AUTH_SECRET;
 const callbackURL = process.env.AUTH_CALLBACK;
 
+// called after CB used in strategy setup below
 passport.serializeUser((user, done) => {
-	done(null, user);
+	// passes data to deserializeUser through 2'nd done param
+	// this is the data that will be stored on the session
+	done(null, {
+		accessToken: user.accessToken,
+		id: user.profile.id,
+		username: user.profile.username
+	});
 });
 
 passport.deserializeUser((user, done) => {
+	// this sets the data on req.user
 	done(null, user);
 });
 
@@ -22,7 +30,8 @@ passport.use(
 			callbackURL
 		},
 		function(accessToken, refreshToken, profile, done) {
-			return done(null, { accessToken, refreshToken, profile });
+			// passes data to serializeUser
+			return done(null, { accessToken, profile });
 		}
 	)
 );
