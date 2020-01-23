@@ -1,11 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const connectDB = require("./db/connectDb");
-const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
-
-require("dotenv").config();
-
+const session = require("./config/sessionConfig");
 const authRouter = require("./routes/auth/authRoutes");
 
 const app = express();
@@ -13,15 +9,9 @@ const app = express();
 // MongoDB connection
 connectDB();
 
-//Sessions
-const store = new MongoDBStore({
-	uri: process.env.MONGO_DB_URI,
-	collection: "sessions"
-});
+// Session config
+app.use(session);
 
-store.on("error", err => {
-	console.log(err);
-});
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
