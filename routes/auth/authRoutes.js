@@ -17,11 +17,29 @@ router.get(
 );
 
 router.get("/github/success", (req, res) => {
-	const data = req.query;
+	const data = req.user;
 
 	res.status(200).json({
 		message: "Successfully logged into GH",
 		data
+	});
+});
+
+const checkAuth = (err, req, res, next) => {
+	if (req.isUnauthenticated()) {
+		console.log("unauthenticated");
+
+		res.status(401).json({ message: "User not authenticated" });
+		next();
+	} else {
+		next();
+	}
+};
+
+router.get("/github/checkAuth", checkAuth, (req, res) => {
+	res.status(200).json({
+		data: req.user,
+		message: "Data persisted successfully. Great JOB!"
 	});
 });
 
