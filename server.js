@@ -1,13 +1,9 @@
 const express = require("express");
 const passport = require("passport");
-const connectDB = require("./db/connectDb");
 const session = require("./config/sessionConfig");
 const authRouter = require("./routes/auth/authRoutes");
 
 const app = express();
-
-// MongoDB connection
-connectDB();
 
 // Session config
 app.use(session);

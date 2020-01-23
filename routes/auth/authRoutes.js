@@ -27,10 +27,9 @@ router.get("/github/success", (req, res) => {
 
 const checkAuth = (err, req, res, next) => {
 	if (req.isUnauthenticated()) {
-		console.log("unauthenticated");
-
+		// need to add checking for missing cookie as well
+		// currently the cookie can be wiped and this will pass with no user data
 		res.status(401).json({ message: "User not authenticated" });
-		next();
 	} else {
 		next();
 	}
@@ -39,6 +38,7 @@ const checkAuth = (err, req, res, next) => {
 router.get("/github/checkAuth", checkAuth, (req, res) => {
 	res.status(200).json({
 		data: req.user,
+		isLoggedIn: true,
 		message: "Data persisted successfully. Great JOB!"
 	});
 });
